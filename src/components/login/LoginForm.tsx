@@ -1,5 +1,12 @@
-import { Box, TextField, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Box,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
@@ -17,7 +24,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [login, { isLoading, isError, isSuccess }] = useLoginMutation();
-  
+  const [showPassword, setShowPassword] = useState(false);
   const usernameRules = useUsernameRules();
   const passwordRules = usePasswordRules();
 
@@ -100,8 +107,22 @@ export const LoginForm = () => {
             fullWidth
             {...field}
             inputRef={ref}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword((show) => !show)}
+                    onMouseDown={(event) => event.preventDefault()}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
             margin="dense"
-            type="password"
+            type={showPassword ? "text" : "password"}
             variant="outlined"
             label="Password"
             disabled={isLoading}
