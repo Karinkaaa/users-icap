@@ -9,14 +9,14 @@ import {
 import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../store/api";
 import {
   useAppDispatch,
   usePasswordRules,
   useUsernameRules,
 } from "../../store/hooks";
-import { useLoginMutation } from "../../store/login.api";
-import { loginActions } from "../../store/login.slice";
-import { ILogin } from "../../types/login";
+import { loginActions } from "../../store/slice";
+import { ILogin } from "../../types";
 import { ErrorAlert } from "./ErrorAlert";
 import { LoginButton } from "./LoginButton";
 
@@ -37,8 +37,8 @@ export const LoginForm = () => {
   } = useForm<ILogin>({
     mode: "onChange",
     defaultValues: {
-      username: "testuser",
-      password: "testpassword123",
+      username: "",
+      password: "",
     },
   });
 

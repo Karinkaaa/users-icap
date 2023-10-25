@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage } from "../../pages/LoginPage";
-import { TablePage } from "../../pages/TablePage";
+import { LoginPage, UsersPage } from "../../pages";
 import { useAppSelector } from "../../store/hooks";
 
 export const App = () => {
@@ -11,7 +10,7 @@ export const App = () => {
       <Route path="/login" element={<LoginPage />} />
 
       {isLoggedIn ? (
-        <Route path="/table" element={<TablePage />} />
+        <Route path="/table" element={<UsersPage />} />
       ) : (
         <Route path="*" element={<Navigate to="/login" />} />
       )}

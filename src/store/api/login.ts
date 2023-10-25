@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ILogin } from "./../types/login";
+import { BASE_URL } from "../../data/constants";
+import { ILogin } from "../../types/login";
 
 export const loginApi = createApi({
   reducerPath: "loginApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://technical-task-api.icapgroupgmbh.com/api/",
+    baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
     login: builder.mutation<unknown, ILogin>({
