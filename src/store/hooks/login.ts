@@ -1,34 +1,35 @@
 import {
-  MAX_NAME_LENGTH,
   MAX_PASSWORD_LENGTH,
-  MIN_NAME_LENGTH,
+  MAX_USERNAME_LENGTH,
   MIN_PASSWORD_LENGTH,
+  MIN_USERNAME_LENGTH,
 } from "../../data/constants";
 
-export const useUsernameRules = () => ({
+const usernameRules = {
   required: "Enter the username",
   maxLength: {
-    value: MAX_NAME_LENGTH,
-    message: `Username must be less than ${MAX_NAME_LENGTH} characters`,
+    value: MAX_USERNAME_LENGTH,
+    message: `Username must be less than ${MAX_USERNAME_LENGTH} characters`,
   },
   minLength: {
-    value: MIN_NAME_LENGTH,
-    message: `Username must be at least ${MIN_NAME_LENGTH} character long`,
+    value: MIN_USERNAME_LENGTH,
+    message: `Username must be at least ${MIN_USERNAME_LENGTH} character long`,
   },
   validate: {
-    minLengthWithoutSpaces: (value: string) => {
-      if (value.startsWith(" ") || value.endsWith(" ")) {
-        return "Username can't start or end with spaces";
+    minLengthWithoutSpaces: (value?: string) => {
+      if (value) {
+        if (value.startsWith(" ") || value.endsWith(" ")) {
+          return "Username can't start or end with spaces";
+        }
+        if (value.trim().length < MIN_USERNAME_LENGTH) {
+          return `Username must be at least ${MIN_USERNAME_LENGTH} character long`;
+        }
       }
-      if (value.trim().length < MIN_NAME_LENGTH) {
-        return `Username must be at least ${MIN_NAME_LENGTH} character long`;
-      }
-      return true;
     },
   },
-});
+};
 
-export const usePasswordRules = () => ({
+const passwordRules = {
   required: "Enter the password",
   maxLength: {
     value: MAX_PASSWORD_LENGTH,
@@ -47,7 +48,11 @@ export const usePasswordRules = () => ({
       if (value.trim().length < MIN_PASSWORD_LENGTH) {
         return `Password must be at least ${MIN_PASSWORD_LENGTH} character long`;
       }
-      return true;
     },
   },
+};
+
+export const useLoginRules = () => ({
+  usernameRules,
+  passwordRules,
 });

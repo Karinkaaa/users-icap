@@ -6,3 +6,5 @@ export interface IUser {
   phone_number: string;
   address?: string;
 }
+
+export type IUserForm = Omit<IUser, "id">;

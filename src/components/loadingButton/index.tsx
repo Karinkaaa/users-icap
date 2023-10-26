@@ -3,10 +3,11 @@ import { CircularProgress } from "@mui/material";
 import React from "react";
 
 interface Props {
+  label: string;
   isLoading: boolean;
 }
 
-export const LoginButton: React.FC<Props> = ({ isLoading }) => (
+export const SubmitLoadingButton: React.FC<Props> = ({ label, isLoading }) => (
   <LoadingButton
     fullWidth
     type="submit"
@@ -23,6 +24,6 @@ export const LoginButton: React.FC<Props> = ({ isLoading }) => (
       background: "linear-gradient(to right, #512dd6, #7c55ee, #ad92fd)",
     }}
   >
-    Login
+    {label}
   </LoadingButton>
 );

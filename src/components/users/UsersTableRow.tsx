@@ -1,21 +1,17 @@
-import { TableCell, TableRow } from "@mui/material";
+import { TableRow } from "@mui/material";
 import { IUser } from "../../types";
+import { ActionsCell } from "./ActionsCell";
+import { UsersTableCell } from "./UsersTableCell";
 
 interface Props {
   row: IUser;
 }
 
-export const UsersTableRow: React.FC<Props> = ({ row }) => {
-  return (
-    <TableRow hover role="checkbox" key={row.id} sx={{ cursor: "pointer" }}>
-      <TableCell component="th" scope="row">
-        {row.id}
-      </TableCell>
-      <TableCell align="right">{row.name}</TableCell>
-      <TableCell align="right">{row.email}</TableCell>
-      <TableCell align="right">{row.birthday_date}</TableCell>
-      <TableCell align="right">{row.phone_number}</TableCell>
-      <TableCell align="right">{row.address}</TableCell>
-    </TableRow>
-  );
-};
+export const UsersTableRow: React.FC<Props> = ({ row }) => (
+  <TableRow key={row.id} hover>
+    <ActionsCell user={row} />
+    {Object.values(row).map((value, index) => (
+      <UsersTableCell key={index} value={value} />
+    ))}
+  </TableRow>
+);

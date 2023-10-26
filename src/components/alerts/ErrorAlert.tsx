@@ -1,7 +1,11 @@
 import { Alert, Snackbar } from "@mui/material";
 import React, { useState } from "react";
 
-export const ErrorAlert = () => {
+interface Props {
+  message: string;
+}
+
+export const ErrorAlert: React.FC<Props> = ({ message }) => {
   const [open, setOpen] = useState(true);
 
   const handleClose = (
@@ -15,7 +19,7 @@ export const ErrorAlert = () => {
   return (
     <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="error" variant="filled">
-        Invalid username or password
+        {message}
       </Alert>
     </Snackbar>
   );

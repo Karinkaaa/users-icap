@@ -5,4 +5,5 @@ import { AppDispatch, RootState } from "..";
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export { usePasswordRules, useUsernameRules } from "./login";
+export { useFormRules } from "./form";
+export { useLoginRules } from "./login";

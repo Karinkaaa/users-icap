@@ -10,23 +10,18 @@ import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../store/api";
-import {
-  useAppDispatch,
-  usePasswordRules,
-  useUsernameRules,
-} from "../../store/hooks";
+import { useAppDispatch, useLoginRules } from "../../store/hooks";
 import { loginActions } from "../../store/slice";
 import { ILogin } from "../../types";
-import { ErrorAlert } from "./ErrorAlert";
-import { LoginButton } from "./LoginButton";
+import { ErrorAlert } from "../alerts";
+import { SubmitLoadingButton } from "../loadingButton";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [login, { isLoading, isError, isSuccess }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const usernameRules = useUsernameRules();
-  const passwordRules = usePasswordRules();
+  const { usernameRules, passwordRules } = useLoginRules();
 
   const {
     handleSubmit,
@@ -111,7 +106,6 @@ export const LoginForm = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label="toggle password visibility"
                     onClick={() => setShowPassword((show) => !show)}
                     onMouseDown={(event) => event.preventDefault()}
                     edge="end"
@@ -131,8 +125,8 @@ export const LoginForm = () => {
           />
         )}
       />
-      {isError && <ErrorAlert />}
-      <LoginButton isLoading={isLoading} />
+      {isError && <ErrorAlert message="Invalid username or password" />}
+      <SubmitLoadingButton label="Login" isLoading={isLoading} />
     </Box>
   );
 };
