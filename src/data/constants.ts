@@ -21,3 +21,6 @@ export const DATE_FORMAT = "YYYY-MM-DD";
 export const BACKEND_DATE_FORMAT = "YY-MM-DD";
 
 export const MIN_DATE = "1900-01-01";
+
+export const SORT_ORDER_DESC = "desc";
+export const SORT_ORDER_ASC = "asc";

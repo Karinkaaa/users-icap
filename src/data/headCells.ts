@@ -1,30 +1,37 @@
 export const headCells = [
   {
-    id: "actions",
+    field: "actions",
     label: "",
+    sortable: false,
   },
   {
-    id: "id",
+    field: "id",
     label: "ID",
+    sortable: true,
   },
   {
-    id: "name",
+    field: "name",
     label: "Name",
+    sortable: true,
   },
   {
-    id: "email",
+    field: "email",
     label: "Email",
+    sortable: true,
   },
   {
-    id: "birth_date",
-    label: "Birth date",
+    field: "birthday_date",
+    label: "Birthday date",
+    sortable: true,
   },
   {
-    id: "phone_number",
+    field: "phone_number",
     label: "Phone number",
+    sortable: true,
   },
   {
-    id: "address",
+    field: "address",
     label: "Address",
+    sortable: true,
   },
 ];

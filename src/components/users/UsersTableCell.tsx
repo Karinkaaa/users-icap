@@ -1,8 +1,8 @@
 import { TableCell } from "@mui/material";
-import { IUser } from "../../types";
+import { UserKey } from "../../types";
 
 interface Props {
-  value: keyof IUser;
+  value: UserKey;
 }
 
 export const UsersTableCell: React.FC<Props> = ({ value }) => {
